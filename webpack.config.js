@@ -32,6 +32,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html', // Данный html будет использован как шаблон
         }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.html',
+            chunks: ['main']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'example.html',
+            template: 'src/lk/text.html',
+            chunks: ['exampleEntry']
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css', // Формат имени файла
         }), // Добавляем в список плагинов
