@@ -53,6 +53,7 @@ const HelloWorld: FC<IProps> = ({text}) => {
                     </div>
                 )}
             </div>
+            <a href='lk/example.html'>Go to LK</a>
         </div>
     );
 };

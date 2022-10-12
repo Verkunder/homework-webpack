@@ -30,15 +30,12 @@ module.exports = {
     // в который импортируются все остальные
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html', // Данный html будет использован как шаблон
-        }),
-        new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html',
             chunks: ['main']
         }),
         new HtmlWebpackPlugin({
-            filename: 'example.html',
+            filename: './lk/example.html',
             template: 'src/lk/text.html',
             chunks: ['exampleEntry']
         }),
