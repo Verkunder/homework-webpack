@@ -26,17 +26,18 @@ if (process.env.SERVE) { // Используем плагин только ес�
 module.exports = {
     mode, // Сокращенная запись mode: mode в ES6+
     target,
-    entry: './src/index.js', // Указываем точку входа - главный модуль приложения,
+    context: path.resolve(__dirname, 'src/'),
+    entry: './index.js', // Указываем точку входа - главный модуль приложения,
     // в который импортируются все остальные
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'src/index.html',
+            template: 'index.html',
             chunks: ['main']
         }),
         new HtmlWebpackPlugin({
             filename: './lk/example.html',
-            template: 'src/lk/text.html',
+            template: 'lk/text.html',
             chunks: ['exampleEntry']
         }),
         new MiniCssExtractPlugin({
@@ -54,6 +55,9 @@ module.exports = {
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        alias: {
+            App: path.resolve(__dirname, 'src/')
+        }
     },
 
     devtool: 'source-map',

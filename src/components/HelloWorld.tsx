@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {IDevelopers} from "../types/type";
+import Icon from "./Icon";
 
 interface IProps {
     text: string;
@@ -40,6 +41,7 @@ const HelloWorld: FC<IProps> = ({text}) => {
 
     return (
         <div>
+            <Icon />
             <h1>{text}</h1>
             {developers.name}, {developers.age}
             <div>
