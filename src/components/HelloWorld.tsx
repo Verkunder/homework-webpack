@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {IDevelopers} from "../types/type";
 import Icon from "./Icon";
+import './test.sass'
 
 interface IProps {
     text: string;
@@ -43,11 +44,14 @@ const HelloWorld: FC<IProps> = ({text}) => {
         <div>
             <Icon />
             <h1>{text}</h1>
+            <div className='logoTest'>
+
+            </div>
             {developers.name}, {developers.age}
             <div>
                 <h1>Todos</h1>
                 {todos && (
-                    <div>
+                    <div className='testDiv'>
                         <div>{todos.userId}</div>
                         <div>{todos.id}</div>
                         <div>{todos.title}</div>

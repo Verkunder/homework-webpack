@@ -29,7 +29,7 @@ module.exports = {
     context: path.resolve(__dirname, 'src/'),
     entry: {
         main: ['./index.js'],
-        test: {import: './assets/test.sass', filename: "test.css"}
+        test: ['./assets/test.sass']
     },
     plugins: [
         new HtmlWebpackPlugin({
