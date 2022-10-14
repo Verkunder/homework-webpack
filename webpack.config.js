@@ -3,12 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-let mode = 'development';
-let target = 'web';
-if (process.env.NODE_ENV === 'production') {
-    mode = 'production';
-    target = 'browserslist';
-}
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const target = process.env.NODE_ENV === 'production' ? 'browserslist' : 'web';
 
 const plugins = [
     new HtmlWebpackPlugin({
@@ -29,18 +25,16 @@ module.exports = {
     context: path.resolve(__dirname, 'src/'),
     entry: {
         main: ['./index.js'],
-        test: ['./assets/test.sass']
+        test: {import: './assets/test.sass', filename: "test.css"}
     },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
-            chunks: ['main']
         }),
         new HtmlWebpackPlugin({
             filename: './lk/example.html',
             template: 'lk/text.html',
-            chunks: ['exampleEntry']
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
@@ -94,6 +88,10 @@ module.exports = {
                         cacheDirectory: true,
                     },
                 },
+            },
+            {
+                test: /\.svg$/i, // exclude react component if *.svg?url
+                use: ['@svgr/webpack'],
             },
             {
                 test: /\.jsx?$/,

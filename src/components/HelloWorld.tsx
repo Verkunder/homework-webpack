@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {IDevelopers} from "../types/type";
 import Icon from "./Icon";
 import './test.sass'
+/*import IconsSVG from '../assets/image.svg'*/
 
 interface IProps {
     text: string;
@@ -14,6 +15,11 @@ type Todos = {
     completed: boolean
 }
 
+function log() {
+    console.log('Tomatos')
+}
+// @ts-ignore
+@log
 class User {
     static staticMethod() {
         alert(this === User);
@@ -42,6 +48,7 @@ const HelloWorld: FC<IProps> = ({text}) => {
 
     return (
         <div>
+            {/*<IconsSVG />*/}
             <Icon />
             <h1>{text}</h1>
             <div className='logoTest'>
