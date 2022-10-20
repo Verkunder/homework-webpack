@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 const target = process.env.NODE_ENV === 'production' ? 'browserslist' : 'web';
@@ -25,7 +27,8 @@ module.exports = {
     context: path.resolve(__dirname, 'src/'),
     entry: {
         main: ['./index.js'],
-        test: {import: './assets/test.sass', filename: "test.css"}
+        test: {import: './assets/test.sass', filename: "test.css"},
+        only: ['./assets/only.sass']
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -39,6 +42,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
+        new FaviconsWebpackPlugin('./assets/apple-touch-icon.png'),
+        new BundleAnalyzerPlugin()
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),

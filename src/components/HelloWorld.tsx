@@ -52,7 +52,6 @@ const HelloWorld: FC<IProps> = ({text}) => {
             <Icon />
             <h1>{text}</h1>
             <div className='logoTest'>
-
             </div>
             {developers.name}, {developers.age}
             <div>
