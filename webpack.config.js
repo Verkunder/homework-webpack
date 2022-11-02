@@ -85,6 +85,8 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|webp|ico)$/i,
                 type: mode === 'production' ? 'asset' : 'asset/resource',
+                loader: 'image-webpack-loader',
+                enforce: 'pre'
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)$/i,
