@@ -1,8 +1,9 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState, Suspense} from 'react';
 import {IDevelopers} from "../types/type";
 import Icon from "./Icon";
 import './test.sass'
-/*import IconsSVG from '../assets/image.svg'*/
+// import Modal from "./Modal";
+const Modal = React.lazy(() => import('./Modal'));
 
 interface IProps {
     text: string;
@@ -18,6 +19,7 @@ type Todos = {
 function log() {
     console.log('Tomatos')
 }
+
 // @ts-ignore
 @log
 class User {
@@ -32,6 +34,8 @@ const HelloWorld: FC<IProps> = ({text}) => {
         age: 17
     }
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const [todos, setTodos] = useState<Todos>(null)
 
     const getTodos = async () => {
@@ -41,6 +45,10 @@ const HelloWorld: FC<IProps> = ({text}) => {
         setTodos(todos)
     }
 
+    const isOpenHandler = () => {
+        setIsOpen(!isOpen)
+    }
+
     useEffect(() => {
         getTodos()
         User.staticMethod(); // true
@@ -48,15 +56,14 @@ const HelloWorld: FC<IProps> = ({text}) => {
 
     return (
         <div>
-            {/*<IconsSVG />*/}
-            <Icon />
+            <Icon/>
             <h1>{text}</h1>
             <div className='logoTest'>
             </div>
             {developers.name}, {developers.age}
             <div>
                 <h1>Todos</h1>
-                {todos && (
+                 {todos && (
                     <div className='testDiv'>
                         <div>{todos.userId}</div>
                         <div>{todos.id}</div>
@@ -66,6 +73,16 @@ const HelloWorld: FC<IProps> = ({text}) => {
                 )}
             </div>
             <a href='lk/example.html'>Go to LK</a>
+            <button onClick={isOpenHandler}>Open Modal</button>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Modal
+                    isVisible={isOpen}
+                    title="Modal Title"
+                    content={<p>Add your content here</p>}
+                    footer={<button>Cancel</button>}
+                    onClose={() => setIsOpen(false)}
+                />
+            </Suspense>
         </div>
     );
 };
