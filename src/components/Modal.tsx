@@ -8,10 +8,11 @@ interface IModal {
     onClose: () => void
 }
 
+
 const Modal: FC<IModal> = ({isVisible = false, title, content, footer, onClose}) => {
-    // @ts-ignore
-    const keydownHandler = ({key}) => {
-        switch (key) {
+
+    const keydownHandler = (e: KeyboardEvent) => {
+        switch (e.key) {
             case 'Escape':
                 onClose();
                 break;

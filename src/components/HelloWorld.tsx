@@ -2,9 +2,8 @@ import React, {FC, useEffect, useState, Suspense} from 'react';
 import {IDevelopers} from "../types/type";
 import Icon from "./Icon";
 
-import { ReactComponent as Svg } from '../assets/image.svg';
+// import Test from "./assets/image.svg"
 import './test.sass'
-// import Modal from "./Modal";
 const Modal = React.lazy(() => import('./Modal'));
 
 interface IProps {
@@ -59,7 +58,6 @@ const HelloWorld: FC<IProps> = ({text}) => {
     return (
         <div>
             <Icon/>
-            <Svg />
             <h1>{text}</h1>
             <div className='logoTest'>
             </div>
@@ -86,6 +84,8 @@ const HelloWorld: FC<IProps> = ({text}) => {
                     onClose={() => setIsOpen(false)}
                 />}
             </Suspense>
+
+            {/*<Test />*/}
         </div>
     );
 };
