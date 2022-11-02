@@ -43,7 +43,9 @@ module.exports = {
             filename: '[name].[contenthash].css',
         }),
         new FaviconsWebpackPlugin('./assets/apple-touch-icon.png'),
-        new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false
+        }),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -68,6 +70,10 @@ module.exports = {
         rules: [
             {test: /\.(html)$/, use: ['html-loader']},
             {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
+            },
+            {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -77,7 +83,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+                test: /\.(png|jpe?g|gif|webp|ico)$/i,
                 type: mode === 'production' ? 'asset' : 'asset/resource',
             },
             {
@@ -95,17 +101,6 @@ module.exports = {
                 },
             },
             {
-                test: /\.svg$/i,
-                type: 'asset',
-                resourceQuery: /url/, // *.svg?url
-            },
-            {
-                test: /\.svg$/i,
-                issuer: /\.[jt]sx?$/,
-                resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-                use: ['@svgr/webpack'],
-            },
-            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: {
@@ -121,5 +116,5 @@ module.exports = {
                 use: 'ts-loader',
             },
         ],
-    }
+    },
 }

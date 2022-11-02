@@ -6,8 +6,5 @@ if (process.env.NODE_ENV === 'development') {
 module.exports = {
     presets: ['@babel/preset-env', '@babel/preset-react'], // Добавляем в babel
     // пресет для работы с React
-    plugins: [
-        ["@babel/transform-runtime"],
-        "babel-plugin-styled-components"
-    ],
+    plugins
 };

@@ -1,8 +1,7 @@
 import React, {FC, useEffect, useState, Suspense} from 'react';
 import {IDevelopers} from "../types/type";
+import Test from "../assets/resource/image.svg"
 import Icon from "./Icon";
-
-// import Test from "./assets/image.svg"
 import './test.sass'
 const Modal = React.lazy(() => import('./Modal'));
 
@@ -73,6 +72,9 @@ const HelloWorld: FC<IProps> = ({text}) => {
                     </div>
                 )}
             </div>
+
+
+            <Test />
             <a href='lk/example.html'>Go to LK</a>
             <button onClick={isOpenHandler}>Open Modal</button>
             <Suspense fallback={<div>Loading...</div>}>
@@ -84,8 +86,6 @@ const HelloWorld: FC<IProps> = ({text}) => {
                     onClose={() => setIsOpen(false)}
                 />}
             </Suspense>
-
-            {/*<Test />*/}
         </div>
     );
 };
