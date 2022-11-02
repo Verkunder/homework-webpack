@@ -43,7 +43,7 @@ module.exports = {
             filename: '[name].[contenthash].css',
         }),
         new FaviconsWebpackPlugin('./assets/apple-touch-icon.png'),
-        new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin(),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),

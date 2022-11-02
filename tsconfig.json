@@ -10,5 +10,5 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
   },
-  "include": ["src/components", "custom.d.ts"]
+  "include": ["custom.d.ts"]
 }
